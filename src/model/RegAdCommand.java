@@ -1,3 +1,10 @@
+/*
+ *  작성자 : 박민수
+ *  작성일 : 2016-06-19
+ *  설명 : 광고를 등록하고 system name 을 전달받아 DB에 저장하는 command
+ * 
+ */
+
 package model;
 
 import java.io.IOException;

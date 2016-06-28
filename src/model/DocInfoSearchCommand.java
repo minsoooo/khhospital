@@ -1,3 +1,10 @@
+/*
+ *  작성자 : 박민수 
+ *  작성일 : 2016-06-20
+ *  설명 : 요청을 받아 parameter에 따라 페이지를 분류하는 command
+ * 
+ */
+
 package model;
 
 import java.io.IOException;

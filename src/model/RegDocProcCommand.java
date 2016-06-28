@@ -1,3 +1,12 @@
+/*
+ *  작성자 : 박민수
+ *  작성일 : 2016-06-15
+ *  설명 : 의사 정보를 받아 DB 에 저장 하는 Command
+ * 
+ * 
+ */
+
+
 package model;
 
 import java.io.IOException;

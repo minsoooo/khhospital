@@ -1,3 +1,13 @@
+/*
+ *  작성자 : 박민수	
+ *  작성일 : 2016 - 06- 19
+ *  설명 :  main_header 에서 광고 실시간 설정을 위한 servelet페이지 
+ * 		 xml로 정보를 보내준다.
+ * 
+ * 
+ */
+
+
 package model;
 
 import java.io.IOException;
