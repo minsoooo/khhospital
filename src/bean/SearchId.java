@@ -16,7 +16,7 @@ public class SearchId {
 		try {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception err) {
-			System.out.println("SearchId DB¿¬°á : " + err);
+			System.out.println("SearchId DBì˜¤ë¥˜ : " + err);
 		}
 	}
 	

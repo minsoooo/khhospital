@@ -16,13 +16,13 @@ public class SearchPass {
 		try {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception err) {
-			System.out.println("SearchPass DB¿¬°á : " + err);
+			System.out.println("SearchPass DBì—°ê²°  : " + err);
 		}
 	}
 	
 	public String searchPass(String id, String question, String answer){
 		String sql = "select pat_pass from patient_info where pat_id='" + id + "' and pat_question='" + question + "' and pat_answer='" + answer + "'";
-		
+		CipherDao cipher = new CipherDao();
 		try {
 			con = pool.getConnection();			
 			stmt = con.prepareStatement(sql);
@@ -32,6 +32,14 @@ public class SearchPass {
 			
 			String pass = rs.getString("pat_pass");
 			
+			if(pass != null){
+				pass = cipher.getNewpass();
+				sql ="update patient_info set pat_pass=? where pat_id=?";
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, pass);
+				stmt.setString(2, id);
+				stmt.executeUpdate();
+			}
 			return pass;
 		} 
 		catch (Exception err) {

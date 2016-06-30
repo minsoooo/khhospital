@@ -112,7 +112,6 @@
 			</div>
 
 	<jsp:include page="/design/footer/main_footer.jsp"></jsp:include>
-
 	<script src="/khhospital/bootstrap/js/jquery-2.2.3.min.js"></script>
 	<script src="/khhospital/bootstrap/js/bootstrap.min.js"></script>
 </body>

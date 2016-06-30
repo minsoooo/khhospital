@@ -1,6 +1,20 @@
+/*
+ * 	 작성자 : 양진원
+ * 	 작성일 : 2016-06-18
+ * 	 설명 : 환자 정보를 입력 받아 디비에 입력 
+ * 	 
+ * 	 수정자 : 박민수
+ * 	 수정일 : 2016-06-29
+ * 	 설명 : 유저 password를 MD5로 암호화 하는 코드 추가.
+ * 
+ * 
+ */
+
 package model;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.CipherDao;
 import dbcp.DBConnectionMgr;
 
 public class RegiProcCommand implements Command {
@@ -21,7 +36,7 @@ public class RegiProcCommand implements Command {
 		try {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception err) {
-			System.out.println("RegiProcCommand DB���� : " + err);
+			System.out.println("RegiProcCommand DB에러 : " + err);
 		}
 	}
 	@Override
@@ -38,8 +53,10 @@ public class RegiProcCommand implements Command {
 		String question = req.getParameter("question");
 		String answer = req.getParameter("answer");
 		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
-		
-		
+		// MD5 알고리즘으로 암호화
+		CipherDao cipher = new CipherDao();
+		String passMD5 =cipher.getMD5(pass);
+	
 		if(check.equals("true")){
 			try {			
 				con = pool.getConnection();
@@ -48,7 +65,7 @@ public class RegiProcCommand implements Command {
 				
 				stmt.setString(1, name);
 				stmt.setString(2, id);
-				stmt.setString(3, pass);
+				stmt.setString(3, passMD5);
 				stmt.setString(4, addr);
 				stmt.setString(5, phone);
 				stmt.setString(6, social);

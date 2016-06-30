@@ -1,3 +1,14 @@
+/*
+ * 	작성자 : 양진원
+ * 	작성일 : 2016-06-17
+ * 	설명 : 입력 정보를 받아 DB와의 연동을 통해 로그인 처리 커맨드.
+ * 
+ * 	수정자 : 박민수
+ * 	수정일 : 2016-06-29
+ * 	설명 : 입력 암호 MD5 알고리즘을 통한 암호화 실시.
+ * 
+ */
+
 package model;
 
 import java.io.IOException;
@@ -12,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.CipherDao;
 import dbcp.DBConnectionMgr;
 
 public class LoginProcCommand implements Command {
@@ -31,10 +43,13 @@ public class LoginProcCommand implements Command {
 	@Override
 	public Object processCommand(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
+		CipherDao cipher = new CipherDao();
 		HttpSession session = req.getSession();
 		
 		String id = req.getParameter("id");
 	 	String pass = req.getParameter("pass");
+	 	//pass를 받아와서 MD5로 암호화
+	 	String passMD5 =cipher.getMD5(pass);
 	 	String user = req.getParameter("user");		// 환자, 의료진, 관리자를 구분해줌
 	 	
 	 	String sql = "";
@@ -52,7 +67,7 @@ public class LoginProcCommand implements Command {
 				if(rs.next()) {	
 					String dbPass = rs.getString("pat_pass");			
 					
-					if(dbPass.equals(pass)) {		// 로그인 성공
+					if(dbPass.equals(passMD5)) {		// 로그인 성공
 						result = "Success";
 						
 						session.setAttribute("pat_num", rs.getString("pat_num"));
@@ -67,7 +82,7 @@ public class LoginProcCommand implements Command {
 				}
 			}
 			else if(user.equals("doctor")){		// 의사로 로그인을 시도한 경우
-				sql = "select doc_pass, doc_name, Dept_Info_Dept_no from doc_info where doc_num='" + id + "'";
+				sql = "select doc_pass, doc_name, Dept_Info_Dept_no from doc_info where doc_id='" + id + "'";
 				
 				stmt = con.prepareStatement(sql);
 				rs = stmt.executeQuery();
