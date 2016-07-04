@@ -32,11 +32,10 @@
 <body>
 <%
 	Calendar cal = Calendar.getInstance();
-	String now_month =Integer.toString(Calendar.DAY_OF_MONTH+1);
+	String now_month =Integer.toString(cal.get(Calendar.MONTH)+1);
 	String now_year =Integer.toString(cal.get(Calendar.YEAR));
 	request.setAttribute("now_month", now_month);
 	request.setAttribute("now_year", now_year);
-
 %>
 
 <div class = "container">

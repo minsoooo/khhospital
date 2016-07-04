@@ -66,7 +66,6 @@ public class LoginProcCommand implements Command {
 				
 				if(rs.next()) {	
 					String dbPass = rs.getString("pat_pass");			
-					
 					if(dbPass.equals(passMD5)) {		// 로그인 성공
 						result = "Success";
 						
@@ -82,7 +81,7 @@ public class LoginProcCommand implements Command {
 				}
 			}
 			else if(user.equals("doctor")){		// 의사로 로그인을 시도한 경우
-				sql = "select doc_pass, doc_name, Dept_Info_Dept_no from doc_info where doc_id='" + id + "'";
+				sql = "select doc_pass,doc_num, doc_name, Dept_Info_Dept_no from doc_info where doc_id='" + id + "'";
 				
 				stmt = con.prepareStatement(sql);
 				rs = stmt.executeQuery();
@@ -95,6 +94,7 @@ public class LoginProcCommand implements Command {
 						
 						session.setAttribute("dept_num", rs.getString("Dept_Info_Dept_no"));
 						session.setAttribute("doc_name", rs.getString("doc_name"));
+						session.setAttribute("doc_num", rs.getInt("doc_num"));
 				  	}
 					else{
 				  		result = "NoPass";

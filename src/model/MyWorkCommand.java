@@ -47,7 +47,7 @@ public class MyWorkCommand implements Command {
 				resp.setCharacterEncoding("euc-kr");
 				DocDto dto = null;
 				HttpSession session = req.getSession();
-				String doc_num =(String)session.getAttribute("id");
+				String doc_num =(String) session.getAttribute("doc_num");	
 				String now_month = req.getParameter("now_month");
 				String now_year =req.getParameter("now_year");
 				String checkNew = req.getParameter("checkNew");
@@ -75,6 +75,7 @@ public class MyWorkCommand implements Command {
 				String sql = "select work_m_days, Work_A_days, work_month, doc_name, dept_name, doc_img, doc_part from v_details_Wdoc where doc_num=? and"
 						+ " work_month=?";
 				try{
+					System.out.println("work_month" + work_month);
 					con = pool.getConnection();
 					stmt = con.prepareStatement(sql);
 					stmt.setString(1, doc_num);
@@ -97,7 +98,6 @@ public class MyWorkCommand implements Command {
 						dto.setNow_year(now_year);
 						dto.setDoc_num(doc_num);
 					}
-					
 					req.setAttribute("work", dto);
 				}catch(Exception err){
 					err.printStackTrace();
