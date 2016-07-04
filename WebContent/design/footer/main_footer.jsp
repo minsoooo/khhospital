@@ -7,6 +7,7 @@
 
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -122,23 +123,19 @@
 		}		
 	);
 	
-
 </script>
 </head>
 <style>
-footer {
-	background-color: #595f6a;
-}
 
-.foot1>a,.foot1 .caret,.foot2>a,.foot2 .caret {
+#sitemap, #sitemap>.caret {
 	color: #fff;
 }
 
-.foot1>a:hover,.foot1>a:focus,.foot2>a:hover,.foot2>a:focus {
+#sitemap:hover {
 	color: #8be4ce;
 }
 
-.foot1 .caret,.foot2 .caret {
+#sitemap>.caret{
 	margin-top: 8px;
 	margin-left: 3px;
 	border-top: 4px solid #fff;
@@ -220,22 +217,34 @@ footer {
 				</div>
 			</div>
 		</div>
-
-
+		
+		
 		<!-- footer -->
-		<footer>
-			<div class="container">
+		<div style="background-color: #595f6a;">	
+		
+			<div id="theRemote" class="collapse">
+				<div class="container">			
+					<div class="row">
+						<div class="span12">
+							<jsp:include page="site_footer.jsp"></jsp:include>
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			
+			<div class="container">			
 				<div class="row">
-					<div class="span9" style="margin-top:20px; margin-left: 20px; color:#d8d8d8">
+					<div class="span10" style="margin-top:20px; margin-left: 20px; color:#d8d8d8">
 						서울특별시 종로구 일원로 11 (06351) KH종합병원 / 대표전화 : 1577-0012 / 사업자등록번호 : 213-82-05096 박민수<br/>
 						copyright 2016 - 2020 by KH Medical Center. All rights reserved.				
 					</div>
-					<div class="foot1 span3" style="margin-top: 20px; margin-left: 20px">
-						<a href="#" style="margin-right: 20px">사이트맵<i class="caret"></i></a>						
-						<a href="aaa">진료과 홈페이지<i class="caret"></i></a>
+					<div class="span2" style="margin-top: 20px; margin-left: 20px">
+						<font id="sitemap" data-toggle="collapse" data-target="#theRemote">사이트맵&nbsp;&nbsp;<i class="caret"></i></font>
 					</div>
 				</div>
 			</div>
+			
 			<div class="container">
 				<div class="row">
 					<div class="span12">
@@ -243,7 +252,8 @@ footer {
 					</div>
 				</div>
 			</div>
-		</footer>
+			
+		</div>
 	</div>
 
 </body>

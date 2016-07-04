@@ -1,3 +1,9 @@
+/*
+ * ÀÛ¼ºÀÚ : ¾çÁø¿ø
+ * ¼³¸í : ÀÇ»ç°¡ ÀÇ»çÆäÀÌÁö¿¡¼­ '½Ç½Ã°£ »ó´ã'¸Ş´º¸¦ ´©¸£¸é ÀÛµ¿ÇÏ´Â Ä¿¸àµå.
+ * ÀüÃ¼ »ó´ã´ë±â¸ñ·Ï(waitLis) Áß ³ª¿ÍÀÇ »ó´ãÀ» ±â´Ù¸®´Â È¯ÀÚµéÀÇ ¸ñ·Ï(myWaitList)À» º¸³»ÁÜ
+ */
+
 package model;
 
 import java.io.IOException;
@@ -18,16 +24,16 @@ public class CounselCommand implements Command {
 		ServletContext application = req.getServletContext();
 		
 		ArrayList<String[]> waitList = (ArrayList<String[]>) application.getAttribute("waitList");
-		// waitListëŠ” {ì˜ì‚¬ë²ˆí˜¸, í™˜ìID, í™˜ìì´ë¦„, í™˜ìë²ˆí˜¸} í˜•ì‹, ì „ì²´ waitList
+		// waitList´Â {ÀÇ»ç¹øÈ£, È¯ÀÚID, È¯ÀÚÀÌ¸§, È¯ÀÚ¹øÈ£} Çü½Ä, ÀüÃ¼ waitList
 		
-		ArrayList<String[]> myWaitList = new ArrayList<>();	// í˜„ì¬ ì ‘ì†í•œ ì˜ì‚¬ë¥¼ ê¸°ë‹¤ë¦¬ëŠ” í™˜ìë“¤ì˜ ëŒ€ê¸°ëª©ë¡ì„ ë‹´ì„ ê³µê°„
+		ArrayList<String[]> myWaitList = new ArrayList<>();	// ÇöÀç Á¢¼ÓÇÑ ÀÇ»ç¸¦ ±â´Ù¸®´Â È¯ÀÚµéÀÇ ´ë±â¸ñ·ÏÀ» ´ãÀ» °ø°£
 		
-		String id = (String)session.getAttribute("id");		// í˜„ì¬ ì ‘ì†í•œ ì˜ì‚¬ID		
+		String id = (String)session.getAttribute("id");		// ÇöÀç Á¢¼ÓÇÑ ÀÇ»çID		
 		
 		if(waitList != null){
 			for(int i = 0; i < waitList.size(); i++){
-				if(waitList.get(i)[0].equals(id)){				// waitListì¤‘ í˜„ì¬ ì ‘ì†í•œ ì˜ì‚¬ë¥¼ ê¸°ë‹¤ë¦¬ëŠ” í™˜ìì¼ ê²½ìš°
-					String[] myPatient = new String[4];			// í˜„ì¬ ì ‘ì†í•œ ì˜ì‚¬ë¥¼ ê¸°ë‹¤ë¦¬ëŠ” ê°ê° í™˜ì ì •ë³´ë¥¼ ë‹´ì„ ê³µê°„
+				if(waitList.get(i)[0].equals(id)){				// waitListÁß ÇöÀç Á¢¼ÓÇÑ ÀÇ»ç¸¦ ±â´Ù¸®´Â È¯ÀÚÀÏ °æ¿ì
+					String[] myPatient = new String[4];			// ÇöÀç Á¢¼ÓÇÑ ÀÇ»ç¸¦ ±â´Ù¸®´Â °¢°¢ È¯ÀÚ Á¤º¸¸¦ ´ãÀ» °ø°£
 					
 					myPatient[0] = waitList.get(i)[0];
 					myPatient[1] = waitList.get(i)[1];

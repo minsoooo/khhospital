@@ -1,3 +1,9 @@
+/*
+ * ÀÛ¼ºÀÚ : ¾çÁø¿ø
+ * ¼³¸í : ÀÇ»ç°¡ È¯ÀÚ¿Í »ó´ãÇÑ ÈÄ '»ó´ãÁ¾·á'¹öÆ°À» ´­·¶À» ¶§ ÀÛµ¿ÇÏ´Â Ä¿¸àµå.
+ * ÀüÃ¼ »ó´ã´ë±â¸ñ·Ï(waitList)¿¡¼­ ¹æ±Ý »ó´ãÀ» ³¡³½ È¯ÀÚÀÇ Á¤º¸¸¦ »èÁ¦
+ */
+
 package model;
 
 import java.io.IOException;
@@ -22,7 +28,7 @@ public class EndCounselCommand implements Command {
 		try {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception err) {
-			System.out.println("EndCounselCommand DBì—°ê²° : " + err);
+			System.out.println("EndCounselCommand DB¿¬°á : " + err);
 		}
 	}
 	
@@ -30,7 +36,7 @@ public class EndCounselCommand implements Command {
 	public Object processCommand(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 		ServletContext application = req.getServletContext();
-		application.setAttribute("online", "false");
+		
 		HttpSession session = req.getSession();
 		ArrayList<String[]> waitList =  (ArrayList<String[]>)application.getAttribute("waitList");
 		String doc_id = (String)session.getAttribute("id");
@@ -38,14 +44,14 @@ public class EndCounselCommand implements Command {
 		
 		for(int i = 0; i < waitList.size(); i++){
 			if(waitList.get(i)[0].equals(doc_id) && waitList.get(i)[1].equals(pat_id)){
-				waitList.remove(i);			// waitListì—ì„œ í•´ë‹¹í™˜ìž ì‚­ì œ
-				application.setAttribute("waitList", waitList);		// í•´ë‹¹í™˜ìžë¥¼ ì œê±°í•œ waitListë¥¼ ë‹¤ì‹œ ì–´í”Œë¦¬ì¼€ì´ì…˜ì— ë„£ìŒ
+				waitList.remove(i);			// waitList¿¡¼­ ÇØ´çÈ¯ÀÚ »èÁ¦
+				application.setAttribute("waitList", waitList);		// ÇØ´çÈ¯ÀÚ¸¦ Á¦°ÅÇÑ waitList¸¦ ´Ù½Ã ¾îÇÃ¸®ÄÉÀÌ¼Ç¿¡ ³ÖÀ½
 				break;
 			}
 		}
 		
 		String sql = "delete from patient_checklist where pat_id='" + pat_id + "'";
-		// í•´ë‹¹í™˜ìžì˜ ìžê°€ì§„ë‹¨ê²°ê³¼ ì‚­ì œ
+		// ÇØ´çÈ¯ÀÚÀÇ ÀÚ°¡Áø´Ü°á°ú »èÁ¦
 		try {	
 			con = pool.getConnection();
 			stmt = con.prepareStatement(sql);

@@ -35,7 +35,7 @@ public class LoginProcCommand implements Command {
 		
 		String id = req.getParameter("id");
 	 	String pass = req.getParameter("pass");
-	 	String user = req.getParameter("user");		// 환자, 의료진, 관리자를 구분해줌
+	 	String user = req.getParameter("user");		// 환자, 의료진, 관리자를 구분함
 	 	
 	 	String sql = "";
 		String result = "";
@@ -43,7 +43,7 @@ public class LoginProcCommand implements Command {
 		try{
 			con = pool.getConnection();	
 			
-			if(user.equals("patient")){		// 환자로 로그인을 시도한 경우
+			if(user.equals("patient")){		// �솚�옄濡� 濡쒓렇�씤�쓣 �떆�룄�븳 寃쎌슦
 				sql = "select pat_pass, pat_num, pat_name from patient_info where pat_id='" + id + "'";
 				
 				stmt = con.prepareStatement(sql);
@@ -52,21 +52,21 @@ public class LoginProcCommand implements Command {
 				if(rs.next()) {	
 					String dbPass = rs.getString("pat_pass");			
 					
-					if(dbPass.equals(pass)) {		// 로그인 성공
+					if(dbPass.equals(pass)) {		// 濡쒓렇�씤 �꽦怨�
 						result = "Success";
 						
 						session.setAttribute("pat_num", rs.getString("pat_num"));
 						session.setAttribute("pat_name", rs.getString("pat_name"));
 				  	}
 					else{
-				  		result = "NoPass";		// 비밀번호가 일치하지 않음
+				  		result = "NoPass";		// 鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�쓬
 				  	}
 				} 
 				else{
-					  result = "NoId";		// ID가 존재하지 않음
+					  result = "NoId";		// ID媛� 議댁옱�븯吏� �븡�쓬
 				}
 			}
-			else if(user.equals("doctor")){		// 의사로 로그인을 시도한 경우
+			else if(user.equals("doctor")){		// �쓽�궗濡� 濡쒓렇�씤�쓣 �떆�룄�븳 寃쎌슦
 				sql = "select doc_pass, doc_name, Dept_Info_Dept_no from doc_info where doc_num='" + id + "'";
 				
 				stmt = con.prepareStatement(sql);
@@ -89,7 +89,7 @@ public class LoginProcCommand implements Command {
 					  result = "NoId";
 				}
 			}
-			else{	// 관리자로 로그인을 시도한 경우
+			else{	// 愿�由ъ옄濡� 濡쒓렇�씤�쓣 �떆�룄�븳 寃쎌슦
 				sql = "select mgr_pass from mgr_info where mgr_id='" + id + "'";
 				
 				stmt = con.prepareStatement(sql);
@@ -128,7 +128,7 @@ public class LoginProcCommand implements Command {
 				
 	 			ServletContext application = req.getServletContext();
 	 			ArrayList<String> doctors = new ArrayList<>();
-	 			// 접속중인 의사들의 정보를 담을 공간
+	 			// �젒�냽以묒씤 �쓽�궗�뱾�쓽 �젙蹂대�� �떞�쓣 怨듦컙
 	 			
 	 			if(application.getAttribute("doctors") == null){	 				
 	 				doctors.add(id);

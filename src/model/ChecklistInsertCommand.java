@@ -1,8 +1,15 @@
+/*
+ * ÀÛ¼ºÀÚ : ¾çÁø¿ø
+ * ¼³¸í : È¯ÀÚ°¡ ÀÚ°¡Áø´ÜÀ» ¿Ï·áÇßÀ» ¶§ ÀÛµ¿ÇÏ´Â Ä¿¸àµå.
+ * È¯ÀÚ°¡ ÀÚ°¡Áø´ÜÇÑ °á°ú¸¦ patient_checklist¶ó´Â DBÅ×ÀÌºí¿¡ ÀúÀå
+ */
+
 package model;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +27,7 @@ public class ChecklistInsertCommand implements Command {
 		try {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception err) {
-			System.out.println("ChecklistInsertCommand DBì—°ê²° : " + err);
+			System.out.println("ChecklistInsertCommand DB¿¬°á : " + err);
 		}
 	}
 	
@@ -41,8 +48,9 @@ public class ChecklistInsertCommand implements Command {
 			
 			stmt.setString(1, id);			
 			for(int i = 1; i <= 20; i++){
-				String check ="check"+i;
-				stmt.setString(i+1, req.getParameter(check));
+				String check = "check" + i;
+						
+				stmt.setString(i + 1, req.getParameter(check));
 			}
 			
 			stmt.executeUpdate();
