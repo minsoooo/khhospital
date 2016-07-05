@@ -56,6 +56,14 @@
 				<img src="/khhospital/design/images/step3_1.jpg" id="step3"/>
 				<br/>
 				
+				<div style="margin-top:70px; margin-bottom:100px; background-color:#f7f7f9; width:965px;">
+					<div>
+						Ό³Έν
+					</div>
+				</div>
+					
+				
+				<!-- 
 				<div style="margin-top:100px; margin-bottom:150px; width:965px;">	
 					<table id="docTable">
 						<tr style="font-size: 23px; font-weight:bold; height:80px; border-bottom: 1px solid #d8d8d8">
@@ -95,6 +103,9 @@
 
 					</table>
 				</div>
+				
+ 				-->			
+			
 			</div>
 		</div>
 	</div>

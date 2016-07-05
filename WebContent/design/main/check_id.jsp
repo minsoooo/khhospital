@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/xml; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+	// 주석추가
 	CheckId c = new CheckId();
 	String id = request.getParameter("id");
 	
