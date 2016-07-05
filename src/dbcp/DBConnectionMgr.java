@@ -39,8 +39,8 @@ import java.util.Vector;
 public class DBConnectionMgr {
     private Vector connections = new Vector(10);
     private String _driver = "com.mysql.jdbc.Driver",
-    _url = "jdbc:mysql://127.0.0.1:3306/khhospital",
-    _user = "root",
+    _url = "jdbc:mysql://netsong7.synology.me:3306/db1602_4",
+    _user = "1602_4",
     _password = "1111";
     private boolean _traceOn = false;
     private boolean initialized = false;
