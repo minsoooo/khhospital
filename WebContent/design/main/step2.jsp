@@ -60,6 +60,12 @@
 					<div>
 						설명
 					</div>
+					<br/><br/>
+					<hr style="width: 900px; margin-left:30px"/>
+					<br/><br/>
+					<div>
+						접속의사목록
+					</div>
 				</div>
 					
 				

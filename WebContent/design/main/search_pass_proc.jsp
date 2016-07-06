@@ -11,7 +11,7 @@
 <c:if test="${pass != null}">
 	<script>
 		var pass = "${pass}";
-		alert("비밀번호는 " + pass +  " 입니다.");
+		alert("새로운 비밀번호는 " + pass +  " 입니다.");
 		window.close();
 	</script>
 </c:if>
