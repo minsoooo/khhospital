@@ -42,13 +42,13 @@ public class MyWorkCommand implements Command {
 	@Override
 	public Object processCommand(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-				
 				req.setCharacterEncoding("euc-kr");
 				resp.setCharacterEncoding("euc-kr");
 				DocDto dto = null;
 				HttpSession session = req.getSession();
-				String doc_num =(String) session.getAttribute("doc_num");	
+				String doc_num=(String)session.getAttribute("doc_num");
 				String now_month = req.getParameter("now_month");
+				
 				String now_year =req.getParameter("now_year");
 				String checkNew = req.getParameter("checkNew");
 				String work_month = now_year+"/"+now_month;

@@ -38,7 +38,7 @@ public class CalDao {
 	}
 
 	public int getNowYear(String year) {	
-		if (year != null) {
+		if (year != null && year != "") {
 			cal.set(Calendar.YEAR, Integer.parseInt(year));
 		}
 
@@ -49,7 +49,7 @@ public class CalDao {
 	}
 
 	public int getNowMonth(String month) {
-		if (month != null) {
+		if (month != null && month != "") {
 			cal.set(Calendar.MONTH, Integer.parseInt(month) - 1);
 		}
 		// 설정된 월 받아오기 없으면 객체에서 자동생성.

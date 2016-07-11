@@ -94,7 +94,7 @@ public class LoginProcCommand implements Command {
 						
 						session.setAttribute("dept_num", rs.getString("Dept_Info_Dept_no"));
 						session.setAttribute("doc_name", rs.getString("doc_name"));
-						session.setAttribute("doc_num", rs.getInt("doc_num"));
+						session.setAttribute("doc_num", Integer.toString(rs.getInt("doc_num")));
 				  	}
 					else{
 				  		result = "NoPass";

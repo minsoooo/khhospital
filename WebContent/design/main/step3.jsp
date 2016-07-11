@@ -18,8 +18,6 @@
 	$(document).ready(
 		function(){			
 			// 대기번호가 1번이 되고, 의사가 의사페이지에서 '상담하기'를 눌렀을 경우
-			alert( $("#doc_online").attr("value"))
-			alert($("#pat_online").attr("value"))
 			if($("#waitCount").text() == 1 && $("#doc_online").attr("value") == 'true'){
 				// 환자페이지에서 '상담하기'버튼이 나타나고 v속성이 1로 바뀜
 				$("#btn_sangdam").attr("src", "/khhospital/design/images/btn_sangdam.jpg").attr("v","1");	
@@ -30,6 +28,9 @@
 					function(){
 						if($("#btn_sangdam").attr("v")==1){		
 							// 환자가 상담하기 버튼을 클릭하면 채팅 팝업창이 뜨고 원래 있던 페이지는 메인화면으로 돌아감
+							// 환자가 채팅을 시작할때 자신의 이름과 의사의 이름을 같이 넘겨준다. by 박민수 2016-07-07
+							var doc_name = $("doc_name").attr("value");
+							var pat_name = $("pat_name").attr("value");
 							location.href = "/khhospital/control?cmd=INDEX";
 							window.open("/khhospital/control?cmd=STARTCHAT&pat=online","","width=400,height=360,top=+100,left=+420");
 						}
@@ -73,6 +74,9 @@
 
 <input type="hidden" id="doc_online" value="${applicationScope.online}" /> <!-- 해당 의사가 채팅에 접속 중인지를 알기위한 변수 -->
 <input type="hidden" id ="doc_num" value="${doc_num}" />
+<!-- 채팅창에 보내주기 위한 정보를 담는다. -->
+<input type="hidden" id ="doc_name" value ="${doc_name}"/>
+<input type="hidden" id ="pat_name" value ="${sessionScope.pat_name }"/>
 	<div class="container">
 		<div class="row">
 			<div class="span12">

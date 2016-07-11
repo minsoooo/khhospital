@@ -99,25 +99,30 @@ public class RegDocProcCommand implements Command {
 			String doc_num = rs.getString("doc_num");
 			
 			if(dept_no.equals("1")){
-				doc_id = Integer.toString(1000+Integer.parseInt(doc_num));
+				doc_id = "surg"+doc_num;
 			}else if(dept_no.equals("2")){
-				doc_id = Integer.toString(2000+Integer.parseInt(doc_num));
+				doc_id ="inter"+doc_num;
 			}else if(dept_no.equals("3")){
-				doc_id = Integer.toString(3000+Integer.parseInt(doc_num));
+				doc_id = "dent"+doc_num;
 			}else if(dept_no.equals("4")){
-				doc_id = Integer.toString(4000+Integer.parseInt(doc_num));
+				doc_id = "skin"+doc_num;
 			}else if(dept_no.equals("5")){
-				doc_id = Integer.toString(5000+Integer.parseInt(doc_num));
+				doc_id = "opti"+doc_num;
 			}else if(dept_no.equals("6")){
-				doc_id = Integer.toString(6000+Integer.parseInt(doc_num));
+				doc_id = "psy"+doc_num;
 			}
-			
+			// doc_id 설정 하기.
 			sql ="update doc_info set doc_id =? where doc_num=?";
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, doc_id);
 			stmt.setString(2, doc_num);
 			stmt.executeUpdate();
-			
+			// doc_work 테이블 자동 입력 하기. (트리거를 안쓰기 위한 설정)
+			sql = "insert into doc_work (Work_A_Days, Work_M_Days, Work_Month,Doc_Info_Doc_num) values('0','0',DATE_FORMAT(NOW(), '%Y/%m'),?)";
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, doc_num);
+			stmt.executeUpdate();
+		
 		}catch(Exception err){
 			err.printStackTrace();
 		}finally{

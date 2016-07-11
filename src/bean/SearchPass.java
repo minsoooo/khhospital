@@ -33,7 +33,7 @@ public class SearchPass {
 			String pass = rs.getString("pat_pass");
 			
 			if(pass != null){
-				pass = cipher.getNewpass();
+				pass = cipher.getNewPass();
 				sql ="update patient_info set pat_pass=? where pat_id=?";
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, pass);

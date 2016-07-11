@@ -19,7 +19,6 @@
 <link rel="stylesheet" href="/khhospital/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" href="/khhospital/bootstrap/css/bootstrap-responsive.min.css" />
 <script src="/khhospital/bootstrap/js/jquery-2.2.3.min.js"></script>
-<script src="ajax.js"></script>
 <script>
 $(document).ready(	
 		function(){
