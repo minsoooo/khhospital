@@ -39,20 +39,18 @@ public class Step2Command implements Command {
 		
 		ArrayList<DocDto> searchDoctors = new ArrayList<>();
 		DocDto dto = null;
-		String sql = "select doc_num, dept_name, doc_part, doc_name from v_details_idoc where dept_info_dept_no="+ dept_no;
+		String sql = "select doc_id, doc_num, dept_name, doc_part, doc_name from v_details_idoc where dept_info_dept_no='"+ dept_no +"'";
 		
 		try { 
 			con = pool.getConnection();			
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
-
-			System.out.println("������ �ǻ� �� : " + doctors.size());
 			
 			while(rs.next()){	
 				
 				
 				for(int i = 0; i < doctors.size(); i++){
-					if(doctors.get(i).equals(rs.getString("doc_num"))){					
+					if(doctors.get(i).equals(rs.getString("doc_id"))){					
 						dto = new DocDto();
 						dto.setDoc_num(rs.getString("doc_num"));
 						dto.setDept_name(rs.getString("dept_name"));
