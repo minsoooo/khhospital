@@ -47,19 +47,19 @@ public class Step2Command implements Command {
 			rs = stmt.executeQuery();
 			
 			while(rs.next()){	
-				
-				
-				for(int i = 0; i < doctors.size(); i++){
-					if(doctors.get(i).equals(rs.getString("doc_id"))){					
-						dto = new DocDto();
-						dto.setDoc_num(rs.getString("doc_num"));
-						dto.setDept_name(rs.getString("dept_name"));
-						dto.setDoc_part(rs.getString("doc_part"));
-						dto.setDoc_name(rs.getString("doc_name"));						
-						
-						searchDoctors.add(dto);
-					}
-				}				
+				if(doctors != null){		
+					for(int i = 0; i < doctors.size(); i++){
+						if(doctors.get(i).equals(rs.getString("doc_id"))){					
+							dto = new DocDto();
+							dto.setDoc_num(rs.getString("doc_num"));
+							dto.setDept_name(rs.getString("dept_name"));
+							dto.setDoc_part(rs.getString("doc_part"));
+							dto.setDoc_name(rs.getString("doc_name"));						
+							
+							searchDoctors.add(dto);
+						}
+					}	
+				}
 			}
 		} 
 		catch (Exception err) {

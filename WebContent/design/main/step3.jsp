@@ -18,31 +18,41 @@
 	$(document).ready(
 		function(){			
 			// 대기번호가 1번이 되고, 의사가 의사페이지에서 '상담하기'를 눌렀을 경우
-			if($("#waitCount").text() == 1 && $("#doc_online").attr("value") == 'true'){
+			//if($("#waitCount").text() == 1 && $("#doc_online").attr("value") == 'true'){
 				// 환자페이지에서 '상담하기'버튼이 나타나고 v속성이 1로 바뀜
 				$("#btn_sangdam").attr("src", "/khhospital/design/images/btn_sangdam.jpg").attr("v","1");	
 			
-			}
+			//}
 			
 			$("#btn_sangdam").click(	
 					function(){
 						if($("#btn_sangdam").attr("v")==1){		
 							// 환자가 상담하기 버튼을 클릭하면 채팅 팝업창이 뜨고 원래 있던 페이지는 메인화면으로 돌아감
 							// 환자가 채팅을 시작할때 자신의 이름과 의사의 이름을 같이 넘겨준다. by 박민수 2016-07-07
-							var doc_name = $("doc_name").attr("value");
-							var pat_name = $("pat_name").attr("value");
-							location.href = "/khhospital/control?cmd=INDEX";
-							window.open("/khhospital/control?cmd=STARTCHAT&pat=online","","width=400,height=360,top=+100,left=+420");
+	
+							//var doc_name = $("#doc_name").attr("value");
+							//var pat_name = $("#pat_name").attr("value");
+							var doc_info_url = "/khhospital/control?cmd=COUNSELDOCINFO&doc_num=" + $("#doc_num").attr("value");
+							//location.href = "/khhospital/control?cmd=INDEX";
+							//window.open("/khhospital/control?cmd=STARTCHAT&pat=online","","width=400,height=360,top=+100,left=+420");
+							window.open(doc_info_url,"","width=400,height=420,top=+100,left=+820");
 						}
 						
 					}
 			);
 			
-			
+					// 일정시간마다 대기번호를 새로 요청함
 					setInterval(function(){
-						location.href = "/khhospital/control?cmd=STEP3&doc_num="+$("#doc_num").attr("value");
+						var doc_num = $("#doc_num").attr("value");
+						$.post("/khhospital/waitlist.do",{"doc_num":doc_num},"xml").done(
+								function(xml){
+									var count = $(xml).find("count").text();
+									$("#waitCount").text(count);								
+								}		
+						);	
 					}, 1000*10);
-				}	
+				
+		}	
 	);
 </script>
 
@@ -74,8 +84,9 @@
 
 <input type="hidden" id="doc_online" value="${applicationScope.online}" /> <!-- 해당 의사가 채팅에 접속 중인지를 알기위한 변수 -->
 <input type="hidden" id ="doc_num" value="${doc_num}" />
-<!-- 채팅창에 보내주기 위한 정보를 담는다. -->
-<input type="hidden" id ="doc_name" value ="${doc_name}"/>
+<input type="hidden" id="dept_name" value="${dept_name}" />
+<input type="hidden" id="doc_part" value="${doc_part}" />
+<input type="hidden" id ="doc_name" value ="${doc_name}"/>	<!-- 채팅창에 보내주기 위한 정보를 담는다. -->
 <input type="hidden" id ="pat_name" value ="${sessionScope.pat_name }"/>
 	<div class="container">
 		<div class="row">

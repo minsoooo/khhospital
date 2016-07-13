@@ -149,10 +149,16 @@ public class LoginProcCommand implements Command {
 	 				doctors.add(id);
 	 				application.setAttribute("doctors", doctors);
 	 			}
-	 			else{
-	 				doctors = (ArrayList<String>) application.getAttribute("doctors");
-	 				doctors.add(id);
-	 				application.setAttribute("doctors", doctors);
+	 			else{	 				
+	 				for(int i = 0; i < doctors.size(); i++){
+	 					if(doctors.get(i).equals(id))
+	 						break;
+	 					else{
+	 						doctors = (ArrayList<String>) application.getAttribute("doctors");
+	 		 				doctors.add(id);
+	 		 				application.setAttribute("doctors", doctors);
+	 					}
+	 				}
 	 			}
 	 		}
 	 	}

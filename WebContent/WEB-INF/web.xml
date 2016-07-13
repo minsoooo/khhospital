@@ -1,83 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>khhospital</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>khhospital</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
 	<servlet>
 		<servlet-name>control</servlet-name>
 		<servlet-class>controller.Controller</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>control</servlet-name>
 		<url-pattern>/control</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet>
 		<servlet-name>chat</servlet-name>
 		<servlet-class>model.ChatServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>chat</servlet-name>
 		<url-pattern>/chat.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>foot</servlet-name>
 		<servlet-class>model.FooterServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>foot</servlet-name>
 		<url-pattern>/foot.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>ad</servlet-name>
 		<servlet-class>model.AdServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>ad</servlet-name>
 		<url-pattern>/ad.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>waitlist</servlet-name>
+		<servlet-class>model.WaitListServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>waitlist</servlet-name>
+		<url-pattern>/waitlist.do</url-pattern>
+	</servlet-mapping>
+	
+
 	<session-config>
 		<session-timeout>100</session-timeout>
 	</session-config>
-	
+
 	<error-page>
-    <error-code>401</error-code>
-    <location>/WEB-INF/error/errorPage.jsp</location>
-</error-page>
-<error-page>
-    <error-code>403</error-code>
-    <location>/WEB-INF/error/errorPage.jsp</location>
-</error-page>
-<error-page>
-    <error-code>404</error-code>
-    <location>/WEB-INF/error/errorPage.jsp</location>
-</error-page>
-<error-page>
-    <exception-type>java.lang.NullPointerException</exception-type>
-    <location>/WEB-INF/error/errorPage.jsp</location>
-</error-page>
-<error-page>
-     <exception-type>java.lang.Throwable</exception-type>
-     <location>/WEB-INF/error/errorPage.jsp</location>
-</error-page>
-<error-page>
-    <exception-type>java.lang.Exception</exception-type>
-    <location>/WEB-INF/error/errorPage.jsp</location>
-</error-page>
-	
+		<error-code>401</error-code>
+		<location>/WEB-INF/error/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/WEB-INF/error/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/error/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/WEB-INF/error/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/error/errorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/error/errorPage.jsp</location>
+	</error-page>
+
 </web-app>

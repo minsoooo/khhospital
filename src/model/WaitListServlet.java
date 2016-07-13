@@ -1,29 +1,37 @@
 package model;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class Step3Command implements Command {
+public class WaitListServlet extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
 
 	@Override
-	public Object processCommand(HttpServletRequest req,
-			HttpServletResponse resp) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("euc-kr");
 		resp.setCharacterEncoding("euc-kr");
+
+		resp.setContentType("text/xml");
+		resp.setHeader("Cache-control", "no-cache");
+		
+		PrintWriter out = resp.getWriter();
 		
 		HttpSession session = req.getSession();
 		ServletContext application = req.getServletContext();
 		String[] waitPatient = new String[4];				// 현재 환자의 정보를 담을 공간
 		ArrayList<String[]> waitList = new ArrayList<>();	// 상담을 기다리는 모든 환자들을 담을 공간
-		int count = 1;		// 현재 환자보다 앞에서 대기하고 있는 환자들을 세기 위한 변수
-		
+		int count = 1;		// 현재 환자보다 앞에서 대기하고 있는 환자들을 세기 위한 변수	
 		
 		// 현재 환자의 정보를 배열에 담음 -> {선택한 의사번호, 환자ID, 환자이름,환자 번호} 
 		waitPatient[0] = req.getParameter("doc_num");
@@ -62,11 +70,9 @@ public class Step3Command implements Command {
 				count++;
 			}
 		}
-
-		req.setAttribute("doc_num", req.getParameter("doc_num"));
-		req.setAttribute("waitCount", count);	
 		
-		return "/design/main/step3.jsp";
+		out.println("<response>");
+		out.println("<count>" + count + "</count>");
+		out.println("</response>");
 	}
-
 }
