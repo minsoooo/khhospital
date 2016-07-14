@@ -11,7 +11,8 @@ public class PatientDto {
 	private String pat_phone1;
 	private String pat_phone2;
 	private String pat_phone3;
-	private String pat_social;
+	private String pat_social1;
+	private String pat_social2;
 	private String pat_email1;
 	private String pat_email2;
 	private String pat_level;
@@ -105,14 +106,23 @@ public class PatientDto {
 		this.pat_phone3 = pat_phone3;
 	}
 
-	public String getPat_social() {
-		return pat_social;
+
+
+	public String getPat_social1() {
+		return pat_social1;
 	}
 
-	public void setPat_social(String pat_social) {
-		this.pat_social = pat_social;
+	public void setPat_social1(String pat_social1) {
+		this.pat_social1 = pat_social1;
 	}
 
+	public String getPat_social2() {
+		return pat_social2;
+	}
+
+	public void setPat_social2(String pat_social2) {
+		this.pat_social2 = pat_social2;
+	}
 
 	public String getPat_email1() {
 		return pat_email1;
