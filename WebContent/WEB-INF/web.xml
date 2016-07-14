@@ -54,17 +54,13 @@
 		<url-pattern>/ad.do</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>waitlist</servlet-name>
-		<servlet-class>model.WaitListServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>waitlist</servlet-name>
-		<url-pattern>/waitlist.do</url-pattern>
-	</servlet-mapping>
 
 	
+
+
+
+	
+
 
 	<servlet>
 		<servlet-name>sendMail</servlet-name>
@@ -78,7 +74,18 @@
 	
 
 
+	<servlet>
+		<servlet-name>waitlist</servlet-name>
+		<servlet-class>model.WaitListServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>waitlist</servlet-name>
+		<url-pattern>/waitlist.do</url-pattern>
+	</servlet-mapping>
 	
+
+
 	<session-config>
 		<session-timeout>100</session-timeout>
 	</session-config>

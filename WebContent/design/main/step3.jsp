@@ -16,7 +16,16 @@
 
 <script>
 	$(document).ready(
-		function(){			
+		function(){		
+			// 상담할 의사의 이미지를 띄워주기 위함
+			if($("#doc_img").attr("value") == null){	// 저장된 이미지가 없다면 default이미지
+				$("#docImg").attr("src","/khhospital/upload/default.jpg");
+			}
+			else{
+				var src = "/khhospital/upload/" + $("#doc_img").attr("value");
+				$("#docImg").attr("src", src);
+			}
+			
 			// 대기번호가 1번이 되고, 의사가 의사페이지에서 '상담하기'를 눌렀을 경우
 			//if($("#waitCount").text() == 1 && $("#doc_online").attr("value") == 'true'){
 				// 환자페이지에서 '상담하기'버튼이 나타나고 v속성이 1로 바뀜
@@ -32,10 +41,10 @@
 	
 							//var doc_name = $("#doc_name").attr("value");
 							//var pat_name = $("#pat_name").attr("value");
-							var doc_info_url = "/khhospital/control?cmd=COUNSELDOCINFO&doc_num=" + $("#doc_num").attr("value");
+							//var doc_info_url = "/khhospital/control?cmd=COUNSELDOCINFO&doc_num=" + $("#doc_num").attr("value");
 							//location.href = "/khhospital/control?cmd=INDEX";
 							//window.open("/khhospital/control?cmd=STARTCHAT&pat=online","","width=400,height=360,top=+100,left=+420");
-							window.open(doc_info_url,"","width=400,height=420,top=+100,left=+820");
+							//window.open(doc_info_url,"","width=400,height=420,top=+100,left=+820");
 						}
 						
 					}
@@ -78,6 +87,35 @@
 	#btn_sangdam:hover{
 		border: 3px solid #2a71bc;
 	}
+
+	#docImg{
+		margin-top: 20px;
+		margin-left: 100px;
+		margin-bottom: 30px;
+		border: 5px solid #c1c1c1;
+	}
+	#docName{
+		color: #4197e0;
+		font-weight: bold;
+		font-size: 30px;
+		margin-left: 50px;
+	}
+	
+	#docTable{
+		margin-top: 20px;
+		width: 200px;
+		margin-left: 100px;
+	}
+	
+	#docTable td{
+		border-bottom: 1px solid #d8d8d8;
+		font-size: 20px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		text-align: center;
+		margin-left: 100px;
+	}
+
 </style>
 </head>
 <body>
@@ -103,19 +141,18 @@
 				<img src="/khhospital/design/images/step2_1.jpg" id="step2"/>
 				<img src="/khhospital/design/images/step3_2.jpg" id="step3"/>
 				<br/><br/>
-				
-				<div style="margin-top:50px; margin-bottom:150px; width:965px;">	
-					<table id="docTable">
-						<tr style="font-size: 23px; font-weight:bold; height:80px; border-bottom: 1px solid #d8d8d8">
-							<td>의사번호</td><td>진료과</td><td>진료분야</td><td>의사명</td><td></td>
-						</tr>			
-						<tr style="height:80px">
-							<td>${param.doc_num}</td>
-							<td>${param.dept_name}</td>
-							<td>${param.doc_part}</td>
-							<td>${param.doc_name}</td>
-						</tr>
-					</table>
+				<div style="width:450px; height:600px; background-color:#d8d8d8; float:left;"></div>
+				<input type="hidden" value="${docDto.doc_img}" id="doc_img"/>
+				<img src ="" id ="docImg"/>
+				<font id="docName">${docDto.doc_name}</font> 교수
+				<table id="docTable">
+					<tr>
+						<td>진료과</td><td>${docDto.dept_name}</td>
+					</tr>
+					<tr>
+						<td>진료분야</td><td>${docDto.doc_part}</td>
+					</tr>
+				</table>
 					
 					<div style="width:150px; height:150px;margin-top:60px; margin-left:400px; background-color: #4197e0; border:5px solid #c1c1c1">
 						<br/>
@@ -129,7 +166,8 @@
 					<div style="margin-left:430px">
 						<img src="" v ="0" id="btn_sangdam" />
 					</div>
-				</div>
+				</div>				
+				 
 			</div>
 		</div>
 	</div>

@@ -47,7 +47,8 @@ public class RegiUpdateCommand implements Command {
 				String pat_name = rs.getString("pat_name");
 				String[] pat_addr = rs.getString("pat_addr").split(",");
 				String[] pat_phone = rs.getString("pat_phone").split("-");
-				String pat_social = rs.getString("pat_social");
+
+				String[] pat_social = rs.getString("pat_social").split("-");
 				dto.setPat_name(pat_name);
 				dto.setPat_addr1(pat_addr[0]);
 				dto.setPat_addr2(pat_addr[1]);
@@ -55,7 +56,9 @@ public class RegiUpdateCommand implements Command {
 				dto.setPat_phone1(pat_phone[0]);
 				dto.setPat_phone2(pat_phone[1]);
 				dto.setPat_phone3(pat_phone[2]);
-				dto.setPat_social(pat_social);
+				dto.setPat_social1(pat_social[0]);
+				dto.setPat_social2(pat_social[1]);
+
 			}
 			String pat_num = rs.getString("pat_num");
 			String pat_id = rs.getString("pat_id");
