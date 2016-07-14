@@ -79,7 +79,7 @@
 												$(code).each(
 													function(){
 														$("#checkCode").attr("value",$(this).text());
-														alert($(this).text())
+												
 													}		
 												);
 												
@@ -128,6 +128,11 @@
 
 		}
 	);
+	
+	function fnRegiSecond(){
+		location.href="/khhospital/control?cmd=INDEX";
+		window.open("/khhospital/control?cmd=REGI&check=second","","width=390,height=350,top=+200,left=+480");
+	}
 </script>
 <style>
 #tbl td {
@@ -192,13 +197,13 @@
 					</ul>
 		
 					<div class="tab-content">	
-						<form id="form1" class="form-search" method="post" style="margin-left:250px" action="">
+						<form id="form1" class="form-search" method="post" style="margin-left:250px" action="/khhospital/control?cmd=REGIUPDATEPROC">
 						<input type ="hidden" name ="pat_level" value ="${patient.pat_level }"/>
 							<img src="/khhospital/design/images/regi_update_banner.jpg" style="margin-left:90px"/>
 							<table id="tbl">
 								<tr>	
 									<td>
-										<input type="text" id="id" required="required" placeholder="아이디" readonly="readonly" value ="${patient.pat_id }"/>					
+										<input type="text" id="id" name="id" required="required" placeholder="아이디" readonly="readonly" value ="${patient.pat_id }"/>					
 									</td>
 								</tr>
 								<tr>		
@@ -209,20 +214,20 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="password" id="pass1" placeholder="새 비밀번호 (6~12자로 입력해주세요)" required="required" />
+										<input type="password" id="pass1" name="pass1" placeholder="새 비밀번호 (6~12자로 입력해주세요)" required="required" />
 									</td>
 									<td><img src="" id="check_pass1"/></td>
 								</tr>
 								<tr>
 									<td>
-										<input type="password" id="pass2" placeholder="새 비밀번호 확인 " required="required" />
+										<input type="password" id="pass2" name="pass2" placeholder="새 비밀번호 확인 " required="required" />
 									</td>
 									<td><img src="" id="check_pass2"/></td>
 								</tr>
 								<tr>
 									<td>
-										<input type="text" id="email1" placeholder="이메일" required="required" value="${patient.pat_email1 }"/> @ 
-										<input type="text" id="email2" required="required" value="${patient.pat_email2 }" />		
+										<input type="text" id="email1" name="email1" placeholder="이메일" required="required" value="${patient.pat_email1 }"/> @ 
+										<input type="text" id="email2" name="email2"required="required" value="${patient.pat_email2 }" />		
 									</td>
 									<td></td>
 								</tr>
@@ -244,7 +249,7 @@
 							</table>
 							
 							<!-- 추가개인정보입력 버튼 -->
-							<a href="#"><img src="/khhospital/design/images/regi_update_banner2.jpg" id="banner2"/></a>
+							<a href="javascript:fnRegiSecond()"><img src="/khhospital/design/images/regi_update_banner2.jpg" id="banner2"/></a>
 						</form>
 					</div>
 				</div>
