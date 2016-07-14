@@ -1,8 +1,3 @@
-/*
- * 작성자 : 양진원
- * 설명 : 의사가 의사페이지에서 '실시간 상담'메뉴를 누르면 작동하는 커멘드.
- * 전체 상담대기목록(waitLis) 중 나와의 상담을 기다리는 환자들의 목록(myWaitList)을 보내줌
- */
 
 package model;
 
@@ -24,16 +19,15 @@ public class CounselCommand implements Command {
 		ServletContext application = req.getServletContext();
 		
 		ArrayList<String[]> waitList = (ArrayList<String[]>) application.getAttribute("waitList");
-		// waitList는 {의사번호, 환자ID, 환자이름, 환자번호} 형식, 전체 waitList
 		
-		ArrayList<String[]> myWaitList = new ArrayList<>();	// 현재 접속한 의사를 기다리는 환자들의 대기목록을 담을 공간
+		ArrayList<String[]> myWaitList = new ArrayList<>();	
 		
-		String id = (String)session.getAttribute("id");		// 현재 접속한 의사ID		
+		String id = (String)session.getAttribute("id");		
 		
 		if(waitList != null){
 			for(int i = 0; i < waitList.size(); i++){
-				if(waitList.get(i)[0].equals(id)){				// waitList중 현재 접속한 의사를 기다리는 환자일 경우
-					String[] myPatient = new String[4];			// 현재 접속한 의사를 기다리는 각각 환자 정보를 담을 공간
+				if(waitList.get(i)[0].equals(id)){				
+					String[] myPatient = new String[4];			
 					
 					myPatient[0] = waitList.get(i)[0];
 					myPatient[1] = waitList.get(i)[1];

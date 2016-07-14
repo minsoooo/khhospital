@@ -829,6 +829,10 @@ public class FactoryCommand {
 			else if(cmd.equals("MGRMEDICALNEWSBOARDUPDATEPROC")){
 				return new MgrMedicalNewsBoardUpdateProcCommand();
 			}
+		
+			else if(cmd.equals("COUNSELDOCINFO")){
+				return new CounselDocInfoCommand();
+			}
 
 		return null;
 		
