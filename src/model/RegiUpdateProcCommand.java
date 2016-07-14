@@ -6,7 +6,10 @@
  *      수정자 : 박민수
  *      수정일 : 2016-07-04
  *      설명 : 암호 MD5 알고리즘 사용.
- * 
+ * 		
+ * 		수정자 : 박민수
+ * 		수정일 : 2016-07-13
+ * 		설명 : 환자level 별로 업데이트 내용 구분해주기;
  * 
  */
 
@@ -41,29 +44,32 @@ public class RegiUpdateProcCommand implements Command {
 	public Object processCommand(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
 		CipherDao cipher = new CipherDao();
+		String pat_level = req.getParameter("pat_level");
+		String sql = "";
 		String id = req.getParameter("id");
 		String pass = req.getParameter("pass2");
-		String phone = req.getParameter("phone1") + "-" + req.getParameter("phone2") + "-" + req.getParameter("phone3");
 		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
-		String question = req.getParameter("question");
-		String answer = req.getParameter("answer");
-		String addr = req.getParameter("addr1") + "," + req.getParameter("addr2") + "," + req.getParameter("addr3");
 		
 		String passMD5 = cipher.getMD5(pass);
-		
-		try {			
+		try {
 			con = pool.getConnection();
-			String sql = "update patient_info set pat_pass=?, pat_phone=?, pat_email=?, pat_question=?, pat_answer=?, pat_addr=? where pat_id='" + id + "'";
-			
-			stmt = con.prepareStatement(sql);
-			
-			stmt.setString(1, passMD5);
-			stmt.setString(2, phone);
-			stmt.setString(3, email);
-			stmt.setString(4, question);
-			stmt.setString(5, answer);
-			stmt.setString(6, addr);
-			
+			if(pat_level.equals("2")){
+				String phone = req.getParameter("phone1") + "-" + req.getParameter("phone2") + "-" + req.getParameter("phone3");
+				String addr = req.getParameter("addr1") + "," + req.getParameter("addr2") + "," + req.getParameter("addr3");
+				sql = "update patient_info set pat_pass=?, pat_phone=?, pat_email=?, pat_addr=? where pat_id=?" ;
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, passMD5);
+				stmt.setString(2, phone);
+				stmt.setString(3, email);
+				stmt.setString(4, addr);
+				stmt.setString(5, id);
+			}else{
+				sql = "update patient_info set pat_pass=?, pat_email=? where pat_id=?";
+				stmt = con.prepareStatement(sql);
+				stmt.setString(1, passMD5);
+				stmt.setString(2, email);
+				stmt.setString(3, id);
+			}
 			stmt.executeUpdate();
 		
 		} catch (Exception err) {

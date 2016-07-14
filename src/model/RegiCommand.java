@@ -11,7 +11,12 @@ public class RegiCommand implements Command {
 	@Override
 	public Object processCommand(HttpServletRequest req,
 			HttpServletResponse resp) throws ServletException, IOException {
-		
-		return "/design/main/regi.jsp";
+		String check = req.getParameter("check");
+		if(check.equals("first")){
+			return "/design/main/regi_first.jsp";			
+		}else if (check.equals("second")){
+			return "/design/main/regi_second.jsp";
+		}
+		return null;
 	}
 }
