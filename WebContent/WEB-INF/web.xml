@@ -55,12 +55,6 @@
 	</servlet-mapping>
 	
 
-	
-
-
-
-	
-
 
 	<servlet>
 		<servlet-name>sendMail</servlet-name>
@@ -84,6 +78,7 @@
 		<url-pattern>/waitlist.do</url-pattern>
 	</servlet-mapping>
 	
+
 
 
 	<session-config>

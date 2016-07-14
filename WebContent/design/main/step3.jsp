@@ -45,6 +45,7 @@
 							//location.href = "/khhospital/control?cmd=INDEX";
 							//window.open("/khhospital/control?cmd=STARTCHAT&pat=online","","width=400,height=360,top=+100,left=+420");
 							//window.open(doc_info_url,"","width=400,height=420,top=+100,left=+820");
+
 						}
 						
 					}
