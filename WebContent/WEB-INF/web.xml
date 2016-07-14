@@ -51,6 +51,16 @@
 		<url-pattern>/ad.do</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>sendMail</servlet-name>
+		<servlet-class>model.MailServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>sendMail</servlet-name>
+		<url-pattern>/sendMail.do</url-pattern>
+	</servlet-mapping>
+	
 	<session-config>
 		<session-timeout>100</session-timeout>
 	</session-config>

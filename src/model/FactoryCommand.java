@@ -53,6 +53,8 @@ public class FactoryCommand {
 			return new RegiCommand();
 		} else if (cmd.equals("REGIPROC")) {
 			return new RegiProcCommand();
+		}else if (cmd.equals("REGISECOND")) {
+			return new RegiSecondCommand();
 		} else if (cmd.equals("REGIUPDATE")) {
 			return new RegiUpdateCommand();
 		} else if (cmd.equals("REGIUPDATEPROC")) {
