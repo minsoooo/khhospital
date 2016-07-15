@@ -15,10 +15,9 @@ public class SearchIdProcCommand implements Command {
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
-		String social = req.getParameter("social1") +"-"+req.getParameter("social2");
 
 		SearchId searchId = new SearchId();
-		String id = searchId.searchId(email, social);
+		String id = searchId.searchId(email);
 		
 		req.setAttribute("id", id);
 		

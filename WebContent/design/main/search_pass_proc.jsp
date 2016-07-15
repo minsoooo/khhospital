@@ -11,7 +11,7 @@
 <c:if test="${pass != null}">
 	<script>
 		var pass = "${pass}";
-		alert("새로운 비밀번호는 " + pass +  " 입니다.");
+		alert("새로운 비밀번호는 " + pass +  " 입니다. 마이페이지 - 비밀번호 변경을 권장합니다.");
 		window.close();
 	</script>
 </c:if>

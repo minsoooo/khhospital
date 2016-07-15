@@ -125,7 +125,7 @@
 											$(code).each(
 												function(){
 													$("#checkCode").attr("value",$(this).text());
-													alert($(this).text())
+								
 												}		
 											);
 											

@@ -9,46 +9,127 @@
 <link rel="stylesheet"
 	href="/khhospital/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="/khhospital/bootstrap/css/bootstrap-responsive.min.css" />
+	href="/khhospital/bootstrap/css/bootstrap-responsive.min.css" />		
+<script src="/khhospital/bootstrap/js/jquery-2.2.3.min.js"></script>
+<script>
+	$(document).ready(
+		function(){
+			$("#btnSendCode").click(
+					function(){
+						var email1 = $("#email1").val();
+						var email2 = $("#email2").val();
+						if(email1 != "" && email2 !=""){
+							$.post("/khhospital/sendMail.do",{"email1":email1,"email2":email2},"xml").done(
+									function(xml){
+										var code = $(xml).find("code");
+										if(code.length){
+											$(code).each(
+												function(){
+													$("#checkCode").attr("value",$(this).text());
+												}		
+											);
+											
+										}
+									}
+							);				
+						}else{
+							alert("이메일 주소를 정확히 입력해 주세요")
+							
+						}
+						
+					}
+			);
+			
+			$("#btnCheckCode").click(
+				function(){
+					var sendCode = $("#checkCode").attr("value");
+					var inputCode = $("#email_check").val()
+					if(sendCode == inputCode){
+						$("#check_email").attr("src", "/khhospital/design/images/check_green.png");
+						$("#check").attr("value", "true");
+					}else{
+						alert("인증번호를 확인해 주세요!")
+						$("#check").attr("value", "false");
+					}
+				}		
+			);
+			
+			$("#btnSendCode").hover(
+					function(){
+						$("#btnSendCode").attr("src", "/khhospital/design/images/btn_send_code2.jpg");				
+					},
+					function(){
+						$("#btnSendCode").attr("src", "/khhospital/design/images/btn_send_code.jpg");				
+					}
+				);
+				
+				$("#btnCheckCode").hover(
+					function(){
+						$("#btnCheckCode").attr("src", "/khhospital/design/images/btn_check_code2.jpg");				
+					},
+					function(){
+						$("#btnCheckCode").attr("src", "/khhospital/design/images/btn_check_code.jpg");				
+					}
+				);
+				
+		}		
+	);
+	
+	function fnSearchPass(){
+		var $form = $("#form")
+		var check =$("#check").attr("value")
+		if(check ==	"true"){
+			$form.submit();
+		}else{
+			alert("이메일 및 아이디, 인증번호를 확인해 주세요")
+		}
+	}
+
+
+</script>
+
+
 <style>
 body {
 	text-align: left;
 }
+
+#email1, #email2{
+	width: 160px
+}
+
+#id {
+	width : 355px
+}
 </style>
 </head>
 <body>
-	<center>
+		<span id ="checkCode" value=""></span>
+		<span id ="check" value ="false"></span>
 		<div style="margin-top: 50px"></div>
-		<form class="form-search" method="post" action="/khhospital/control?cmd=SEARCHPASSPROC">
+		<form class="form-search" method="post" action="/khhospital/control?cmd=SEARCHPASSPROC" id="form">
 			<table>
 				<tr>
-					<th>아이디입력</th>
-					<td><input type="text" name="id" class="input-medium"
-						required="required" /></td>
+					<td><input type="text" name="id" id="id" 
+						required="required" placeholder="아이디 입력" /></td>
 				</tr>
 				<tr>
-					<th>계정찾기질문</th>
-					<td><select name="question">
-							<option>졸업한 초등학교의 이름은?</option>
-							<option>가장 친한 친구는?</option>
-							<option>가장 좋아하는 과일은?</option>
-							<option>가장 좋아하는 색은?</option>
-							<option>가장 좋아하는 음식은?</option>
-					</select></td>
+					<td><input type="text" name="email1" id="email1"
+					required="required" placeholder="이메일 입력"  /> @ <input type="text" name="email2"
+				id="email2" required="required"/></td>
 				</tr>
 				<tr>
-					<th>질문의 답</th>
-					<td><input type="text" class="input-medium" name="answer"
-						required="required" /> 
+					<td>
+						<img src="/khhospital/design/images/btn_send_code.jpg" id="btnSendCode"/>
+						<input type="text" id="email_check" class="input-medium" required="required" placeholder="인증번호를 입력하세요 "/> 
+						<img src="/khhospital/design/images/btn_check_code.jpg" id="btnCheckCode"/>
 					</td>
+					<td><img src="" id="check_email"/></td>
 				</tr>
 			</table>
-			<input type="submit" value="비밀번호찾기"
-						class="btn btn-warning"  style="margin-left: 60px; margin-top:20px"/>
+			<a href="javascript:fnSearchPass()"><img src="/khhospital/design/images/btn_search_pass.jpg" style="width:373px;height:50px;margin-top:10px"/></a>
 		</form>
-	</center>
-	
-<script src="/khhospital/bootstrap/js/jquery-2.2.3.min.js"></script>
+
 <script src="/khhospital/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -20,8 +20,8 @@ public class SearchId {
 		}
 	}
 	
-	public String searchId(String email, String social){
-		String sql = "select pat_id from patient_info where pat_email='" + email + "' and pat_social='" + social + "'";
+	public String searchId(String email){
+		String sql = "select pat_id from patient_info where pat_email='" + email + "'" ;
 		
 		try {
 			con = pool.getConnection();			

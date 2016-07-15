@@ -15,11 +15,9 @@ public class SearchPassProcCommand implements Command {
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		String id = req.getParameter("id");
-		String question = req.getParameter("question");
-		String answer = req.getParameter("answer");
-		
+		String email = req.getParameter("email1")+"@"+req.getParameter("email2");
 		SearchPass searchPass = new SearchPass();
-		String pass = searchPass.searchPass(id, question, answer);
+		String pass = searchPass.searchPass(id, email);
 		
 		req.setAttribute("pass", pass);
 		

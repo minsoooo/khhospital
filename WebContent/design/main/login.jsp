@@ -13,7 +13,7 @@
 		window.open("/khhospital/control?cmd=REGI&check=first","","width=390,height=320,top=+200,left=+480");
 	}
 	function fnLogIn_id(){
-		window.open("/khhospital/control?cmd=SEARCHID","","width=500,height=200,top=+400,left=+600");
+		window.open("/khhospital/control?cmd=SEARCHID","","width=480,height=200,top=+400,left=+600");
 	}
 	function fnLogIn_password(){
 		window.open("/khhospital/control?cmd=SEARCHPASS","","width=500,height=200,top=+400,left=+600");

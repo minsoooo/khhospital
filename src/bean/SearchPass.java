@@ -20,8 +20,8 @@ public class SearchPass {
 		}
 	}
 	
-	public String searchPass(String id, String question, String answer){
-		String sql = "select pat_pass from patient_info where pat_id='" + id + "' and pat_question='" + question + "' and pat_answer='" + answer + "'";
+	public String searchPass(String id, String email){
+		String sql = "select pat_pass from patient_info where pat_id='" + id + "' and pat_email='" + email + "'";
 		CipherDao cipher = new CipherDao();
 		try {
 			con = pool.getConnection();			
@@ -34,9 +34,10 @@ public class SearchPass {
 			
 			if(pass != null){
 				pass = cipher.getNewPass();
+				String passMD5 = cipher.getMD5(pass);
 				sql ="update patient_info set pat_pass=? where pat_id=?";
 				stmt = con.prepareStatement(sql);
-				stmt.setString(1, pass);
+				stmt.setString(1, passMD5);
 				stmt.setString(2, id);
 				stmt.executeUpdate();
 			}
