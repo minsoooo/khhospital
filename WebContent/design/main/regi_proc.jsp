@@ -18,7 +18,7 @@
 
 <c:if test="${check2 eq 'true'}">
 	<script>
-			alert("가입이 완료 되었습니다.");
+			alert("추가정보 입력이 완료 되었습니다.");
 			window.close();
 	</script>
 </c:if>

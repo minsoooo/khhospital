@@ -68,12 +68,35 @@ a:hover,a:focus {
 	function fnLogin() {
 		window.open("/khhospital/control?cmd=LOGIN", "", "width=400,height=250,top=+400,left=+600");
 	}
-	
+	// 상담 환자만 가능하게/ 환자 레벨이 낮을경우 추가정보 입력창으로 이동하기.
+	function fnSangdamCheck(){
+		var checkLogin=	$("#checkLogin").attr("value");
+		if(checkLogin =="patient"){
+			var pat_level = $("#checkLevel").attr("value");
+			if(pat_level == "2"){
+				location.href ="/khhospital/control?cmd=STEP1";				
+			}else{
+				window.open("/khhospital/design/main/regi_question.jsp","","width=390,height=320,top=+200,left=+480");
+			}
+		}else if (checkLogin =="doctor"){
+			alert("환자만 사용가능합니다.")
+		}else if(checkLogin =="manager"){
+			alert("환자만 사용가능합니다.")
+		}else{
+			alert("로그인이 필요합니다.");
+			window.open("/khhospital/control?cmd=LOGIN", "", "width=400,height=250,top=+400,left=+600");
+		}
+	}
 	// 진료 예약은 환자만 가능하게/ 로그인 시에만 가능 하게 하기 
 	function fnCheck(){
 		var checkLogin=	$("#checkLogin").attr("value");
 		if(checkLogin =="patient"){
-			location.href ="/khhospital/control?cmd=SEARCHDOC&check=RESERVE";
+			var pat_level = $("#checkLevel").attr("value");
+			if(pat_level == "2"){
+				location.href ="/khhospital/control?cmd=SEARCHDOC&check=RESERVE";				
+			}else{
+				window.open("/khhospital/design/main/regi_question.jsp","","width=390,height=320,top=+200,left=+480");
+			}
 		}else if (checkLogin =="doctor"){
 			alert("환자만 사용가능합니다.")
 		}else if(checkLogin =="manager"){
@@ -122,7 +145,7 @@ a:hover,a:focus {
 <body>
 
 <span id ="checkLogin" value ="${sessionScope.user}"></span>
-
+<span id ="checkLevel" value ="${sessionScope.pat_level }"></span>
 <!-- 로고 & 광고 -->
 		<div class="container">
 			<div class="row" style="margin-top: 50px">
@@ -305,7 +328,7 @@ a:hover,a:focus {
 							class="dropdown-toggle" data-toggle="dropdown">상담 및 예약</a>
 							<ul class="dropdown-menu">
 								<li><a href="/khhospital/control?cmd=CHECKLISTSTART">자가 진단하기</a></li>
-								<li><a href="/khhospital/control?cmd=STEP1">실시간 상담하기</a></li>
+								<li><a href="javascript:fnSangdamCheck()">실시간 상담하기</a></li>
 								<li><a href="/khhospital/control?cmd=SEARCHDOC&check=SEARCHWORK">진료일정 조회</a></li>
 								<li><a href="javascript:fnCheck()" >진료 예약하기</a></li>
 							</ul></li>

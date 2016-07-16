@@ -6,6 +6,10 @@
 	수정일 : 2016-06-19
 	설명 :scrollTop을 이용한 채팅 스크롤 맨아래 고정 .
 	
+	수정자 : 박민수
+	수정일 : 2016_07_16
+	설명 : 1:1 채팅을 위한 chatMember 받아 오기 
+	
  -->
 
 
@@ -118,6 +122,7 @@ $(document).ready(
 <span id ="user" value ="${sessionScope.user}"></span>
 <span id ="doc_name" value ="${sessionScope.doc_name }"></span>
 <span id ="pat_name" value ="${sessionScope.pat_name }"></span>
+<span id ="chat_member" value ="${sessionScope.chat_member }"></span>
 <div class="container">
 		<div class="row">
 			<div class="span12">

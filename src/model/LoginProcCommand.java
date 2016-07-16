@@ -59,7 +59,7 @@ public class LoginProcCommand implements Command {
 			con = pool.getConnection();	
 			
 			if(user.equals("patient")){		// 환자로 로그인을 시도한 경우
-				sql = "select pat_pass, pat_num, pat_name from patient_info where pat_id='" + id + "'";
+				sql = "select pat_pass, pat_num, pat_name,pat_level from patient_info where pat_id='" + id + "'";
 				
 				stmt = con.prepareStatement(sql);
 				rs = stmt.executeQuery();
@@ -68,7 +68,7 @@ public class LoginProcCommand implements Command {
 					String dbPass = rs.getString("pat_pass");			
 					if(dbPass.equals(passMD5)) {		// 로그인 성공
 						result = "Success";
-						
+						session.setAttribute("pat_level", rs.getString("pat_level"));
 						session.setAttribute("pat_num", rs.getString("pat_num"));
 						session.setAttribute("pat_name", rs.getString("pat_name"));
 				  	}

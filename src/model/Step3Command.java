@@ -20,6 +20,10 @@ public class Step3Command implements Command {
 		
 		HttpSession session = req.getSession();
 		ServletContext application = req.getServletContext();
+		String[] chatMember = new String[2]; 				// 채팅 인원 구분을 위한 배열.
+		// {의사명, 환자명}
+		chatMember[0] = req.getParameter("pat_name");
+		chatMember[1] =	(String)session.getAttribute("pat_name");
 		String[] waitPatient = new String[4];				// 현재 환자의 정보를 담을 공간
 		ArrayList<String[]> waitList = new ArrayList<>();	// 상담을 기다리는 모든 환자들을 담을 공간
 		int count = 1;		// 현재 환자보다 앞에서 대기하고 있는 환자들을 세기 위한 변수
@@ -62,7 +66,7 @@ public class Step3Command implements Command {
 				count++;
 			}
 		}
-
+		session.setAttribute("chat_member", chatMember);
 		req.setAttribute("doc_num", req.getParameter("doc_num"));
 		req.setAttribute("waitCount", count);	
 		

@@ -25,6 +25,10 @@
 		margin-top: 10px;
 		margin-left: 18px;
 	}
+	
+	#btnInsert{
+		margin-bottom:10px;
+	}
 </style>
 </head>
 <body>
