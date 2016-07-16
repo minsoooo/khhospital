@@ -41,11 +41,7 @@
 	
 							//var doc_name = $("#doc_name").attr("value");
 							//var pat_name = $("#pat_name").attr("value");
-							//var doc_info_url = "/khhospital/control?cmd=COUNSELDOCINFO&doc_num=" + $("#doc_num").attr("value");
-							//location.href = "/khhospital/control?cmd=INDEX";
 							//window.open("/khhospital/control?cmd=STARTCHAT&pat=online","","width=400,height=360,top=+100,left=+420");
-							//window.open(doc_info_url,"","width=400,height=420,top=+100,left=+820");
-
 						}
 						
 					}
@@ -73,15 +69,9 @@
 		margin-right: 30px;
 	}
 
-	#docTable{
-		width: 780px;	
-		text-align: center;
-		color: #595959;
-		margin-left: 80px;
-		font-size:20px;
-	}
-
 	#btn_sangdam{
+		margin-left:75px;
+		margin-top:25px;
 		border:3px solid #c1c1c1;
 	}	
 	
@@ -91,32 +81,63 @@
 
 	#docImg{
 		margin-top: 20px;
-		margin-left: 100px;
+		margin-left: 20px;
 		margin-bottom: 30px;
 		border: 5px solid #c1c1c1;
 	}
 	#docName{
 		color: #4197e0;
 		font-weight: bold;
-		font-size: 30px;
-		margin-left: 50px;
+		font-size: 34px;
+		margin-left: 15px;
 	}
-	
+
 	#docTable{
+		text-align: center;
+		color: #595959;
+		margin-left: 10px;
+		font-size:20px;
 		margin-top: 20px;
-		width: 200px;
-		margin-left: 100px;
+		width: 170px;
 	}
-	
+
 	#docTable td{
 		border-bottom: 1px solid #d8d8d8;
-		font-size: 20px;
+		font-size: 22px;
+		font-weight:bold;
 		padding-top: 10px;
 		padding-bottom: 10px;
 		text-align: center;
-		margin-left: 100px;
 	}
 
+	#banner{
+		margin-top:20px;
+		margin-left:20px;
+	}
+	
+	#rightDiv{
+		margin-top:20px;
+		margin-right:220px;
+		width:450px;
+		height:600px;
+		float:right;
+		background-color: #f7f7f9;
+	}
+	
+	#docInfoDiv{
+		float:right; 
+		margin-right:30px;
+		margin-top:100px;
+	}
+	
+	#waitCountDiv{
+		width:150px; 
+		height:150px;
+		margin-top:15px; 
+		margin-left:45px; 
+		background-color: #4197e0; 
+		border:5px solid #c1c1c1;
+	}
 </style>
 </head>
 <body>
@@ -142,33 +163,42 @@
 				<img src="/khhospital/design/images/step2_1.jpg" id="step2"/>
 				<img src="/khhospital/design/images/step3_2.jpg" id="step3"/>
 				<br/><br/>
-				<div style="width:450px; height:600px; background-color:#d8d8d8; float:left;"></div>
-				<input type="hidden" value="${docDto.doc_img}" id="doc_img"/>
-				<img src ="" id ="docImg"/>
-				<font id="docName">${docDto.doc_name}</font> 교수
-				<table id="docTable">
-					<tr>
-						<td>진료과</td><td>${docDto.dept_name}</td>
-					</tr>
-					<tr>
-						<td>진료분야</td><td>${docDto.doc_part}</td>
-					</tr>
-				</table>
+				
+				<div style="margin-top:50px; margin-bottom:100px;">
+					<!-- 유의사항 or 채팅 -->
+					<img src="/khhospital/design/images/step3_banner.jpg" id="banner"/>
 					
-					<div style="width:150px; height:150px;margin-top:60px; margin-left:400px; background-color: #4197e0; border:5px solid #c1c1c1">
-						<br/>
-						<font style="font-size:25px; color:#fff; margin-left:27px">대기번호</font><br/><br/><br/>
-						<font style="font-size:70px; color:#fff; margin-left:55px" id="waitCount">${waitCount}</font><br/><br/>
-					</div>					
-					<br/><br/>
-						<font style="font-size:17px; color:#595959; margin-left:300px">* 다시 로그인을 하면 대기번호가 초기화됩니다.</font><br/><br/>
-						<font style="font-size:17px; color:#595959; margin-left:250px"> * 대기번호 1번이 된 후 기다리시면 상담버튼이 나타납니다.</font>
-					<br/><br/><br/>
-					<div style="margin-left:430px">
+					<!-- 의사정보 및 대기번호 -->
+					<div id="rightDiv">
+						<input type="hidden" value="${docDto.doc_img}" id="doc_img"/>
+						
+						<!-- 의사정보 -->
+						<img src ="" id ="docImg"/>						
+						<div id="docInfoDiv">	
+							&nbsp;&nbsp;<font id="docName">${docDto.doc_name}</font>
+							<font style="font-size:20px; font-weight:bold; color:#595959">교수</font>
+							<table id="docTable">
+								<tr>
+									<td>진료과</td><td>${docDto.dept_name}</td>
+								</tr>
+								<tr>
+									<td>진료분야</td><td>${docDto.doc_part}</td>
+								</tr>
+							</table>
+						</div>								
+							
+						<!-- 대기번호, 상담하기버튼 -->
+						<div id="waitCountDiv">
+							<br/>
+							<font style="font-size:25px; color:#fff; margin-left:27px">대기번호</font><br/><br/><br/>
+							<font style="font-size:70px; color:#fff; margin-left:55px" id="waitCount">${waitCount}</font><br/><br/>
+						</div>				
+	
 						<img src="" v ="0" id="btn_sangdam" />
-					</div>
-				</div>				
-				 
+									
+					 </div>
+					 
+				 </div>
 			</div>
 		</div>
 	</div>

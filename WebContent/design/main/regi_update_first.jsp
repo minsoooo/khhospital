@@ -250,7 +250,6 @@
 							
 							<!-- 추가개인정보입력 버튼 -->
 							<a href="javascript:fnRegiSecond()"><img src="/khhospital/design/images/regi_update_banner2.jpg" id="banner2"/></a>
-
 						</form>
 					</div>
 				</div>
