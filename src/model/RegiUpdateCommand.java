@@ -57,6 +57,7 @@ public class RegiUpdateCommand implements Command {
 				dto.setPat_phone3(pat_phone[2]);
 				dto.setPat_social1(pat_social[0]);
 				dto.setPat_social2(pat_social[1]);
+
 			}
 			String pat_num = rs.getString("pat_num");
 			String pat_id = rs.getString("pat_id");

@@ -11,8 +11,10 @@ public class PatientDto {
 	private String pat_phone1;
 	private String pat_phone2;
 	private String pat_phone3;
+
 	private String pat_social1;
 	private String pat_social2;
+
 	private String pat_email1;
 	private String pat_email2;
 	private String pat_level;
@@ -115,6 +117,7 @@ public class PatientDto {
 	public void setPat_social1(String pat_social1) {
 		this.pat_social1 = pat_social1;
 	}
+
 
 	public String getPat_social2() {
 		return pat_social2;

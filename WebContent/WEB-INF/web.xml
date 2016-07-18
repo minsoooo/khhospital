@@ -56,18 +56,7 @@
 	
 
 	<servlet>
-		<servlet-name>sendMail</servlet-name>
-		<servlet-class>model.MailServlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>sendMail</servlet-name>
-		<url-pattern>/sendMail.do</url-pattern>
-	</servlet-mapping>
-	
 
-
-	<servlet>
 		<servlet-name>waitlist</servlet-name>
 		<servlet-class>model.WaitListServlet</servlet-class>
 	</servlet>
@@ -75,6 +64,19 @@
 	<servlet-mapping>
 		<servlet-name>waitlist</servlet-name>
 		<url-pattern>/waitlist.do</url-pattern>
+	</servlet-mapping>
+	
+
+
+	<servlet>
+		<servlet-name>sendMail</servlet-name>
+		<servlet-class>model.MailServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>sendMail</servlet-name>
+		<url-pattern>/sendMail.do</url-pattern>
+
 	</servlet-mapping>
 	
 
